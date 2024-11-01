@@ -399,13 +399,13 @@ const questionsData = {
 const Questions = () => {
   const { category } = useParams();
   const navigate = useNavigate();
+  const questions = questionsData[category] || [];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
-// Memoize questions based on category
-const questions = useMemo(() => questionsData[category] || [], [category]);
+
   
   // Memoize shuffled questions
   const memoizedShuffledQuestions = useMemo(() => {
