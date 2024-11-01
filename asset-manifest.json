@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/SHAHZADcodr/quiz-react/static/css/main.dfb45bc8.css",
+    "main.js": "/SHAHZADcodr/quiz-react/static/js/main.15a81ee6.js",
+    "static/js/453.e3426b48.chunk.js": "/SHAHZADcodr/quiz-react/static/js/453.e3426b48.chunk.js",
+    "static/media/constitution.jpg": "/SHAHZADcodr/quiz-react/static/media/constitution.7a0017f294a0af6ccdd5.jpg",
+    "static/media/nature.jpg": "/SHAHZADcodr/quiz-react/static/media/nature.575686dc1faebcd1d719.jpg",
+    "static/media/historical.jpg": "/SHAHZADcodr/quiz-react/static/media/historical.392c27778d4040bd91ba.jpg",
+    "static/media/sport.jpg": "/SHAHZADcodr/quiz-react/static/media/sport.7a9f56dbefca9468f2d1.jpg",
+    "static/media/funFact.jpg": "/SHAHZADcodr/quiz-react/static/media/funFact.98ea861cca392f5dc044.jpg",
+    "static/media/education.jpg": "/SHAHZADcodr/quiz-react/static/media/education.03d1e913d9499212713a.jpg",
+    "static/media/cursor.svg": "/SHAHZADcodr/quiz-react/static/media/cursor.432206ab9497de689ae7.svg",
+    "index.html": "/SHAHZADcodr/quiz-react/index.html",
+    "main.dfb45bc8.css.map": "/SHAHZADcodr/quiz-react/static/css/main.dfb45bc8.css.map",
+    "main.15a81ee6.js.map": "/SHAHZADcodr/quiz-react/static/js/main.15a81ee6.js.map",
+    "453.e3426b48.chunk.js.map": "/SHAHZADcodr/quiz-react/static/js/453.e3426b48.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dfb45bc8.css",
+    "static/js/main.15a81ee6.js"
+  ]
+}
