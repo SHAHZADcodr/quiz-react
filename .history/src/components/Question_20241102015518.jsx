@@ -412,8 +412,9 @@ const Questions = () => {
 }, [questions]);
 
   useEffect(() => {
-    setShuffledQuestions(memoizedShuffledQuestions);
-  }, [memoizedShuffledQuestions]);
+    const shuffled = [...questions].sort(() => 0.5 - Math.random()).slice(0, 10
+    setShuffledQuestions(shuffled);
+  }, [questions]);
 
   const handleOptionClick = (option) => {
     const currentQuestion = shuffledQuestions[currentIndex];

@@ -1,4 +1,4 @@
-import React, { useState, useMemo,useEffect } from 'react';
+import React, { useState, use,useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -406,14 +406,10 @@ const Questions = () => {
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
 
-  // Memoize shuffled questions
-  const memoizedShuffledQuestions = useMemo(() => {
-    return [...questions].sort(() => 0.5 - Math.random()).slice(0, 10);
-}, [questions]);
-
   useEffect(() => {
-    setShuffledQuestions(memoizedShuffledQuestions);
-  }, [memoizedShuffledQuestions]);
+    const shuffled = [...questions].sort(() => 0.5 - Math.random()).slice(0, 10);
+    setShuffledQuestions(shuffled);
+  }, [questions]);
 
   const handleOptionClick = (option) => {
     const currentQuestion = shuffledQuestions[currentIndex];

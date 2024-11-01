@@ -406,14 +406,11 @@ const Questions = () => {
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
 
-  // Memoize shuffled questions
-  const memoizedShuffledQuestions = useMemo(() => {
-    return [...questions].sort(() => 0.5 - Math.random()).slice(0, 10);
-}, [questions]);
-
+  // Memoize shuff
   useEffect(() => {
-    setShuffledQuestions(memoizedShuffledQuestions);
-  }, [memoizedShuffledQuestions]);
+    const shuffled = [...questions].sort(() => 0.5 - Math.random()).slice(0, 10);
+    setShuffledQuestions(shuffled);
+  }, [questions]);
 
   const handleOptionClick = (option) => {
     const currentQuestion = shuffledQuestions[currentIndex];
