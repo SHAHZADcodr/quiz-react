@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />{" "}
         {/* Render Categories on Home */}
-        <Route path="*" element={<Home/>} />
+        <Route path="*" element={<C/>} />
         {/* Dynamic category route */}
         <Route path="/:category" element={<Questions />} />
       </Routes>

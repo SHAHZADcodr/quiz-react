@@ -12,9 +12,9 @@ function App() {
     <>
       <MyNavbar />
       <Routes>
-        <Route path="/" element={<Home/>} />{" "}
+        <Route path="/" element={<Categories />} />{" "}
         {/* Render Categories on Home */}
-        <Route path="*" element={<Home/>} />
+        <Route path="*" element={<Categories />} />
         {/* Dynamic category route */}
         <Route path="/:category" element={<Questions />} />
       </Routes>

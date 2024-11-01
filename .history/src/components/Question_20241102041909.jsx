@@ -484,7 +484,7 @@ const Questions = () => {
     return (
       <div className="quiz-container">
         <h2>Time for a quiz! Are you ready?</h2>
-        <button onClick={handleGoHome} className="home-button">Let's Start</button>
+        <button onClick={handleGoHome} className="home-button">Go to Home</button>
       </div>
     );
   }

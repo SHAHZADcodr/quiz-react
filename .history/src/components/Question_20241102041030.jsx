@@ -461,6 +461,17 @@ const Questions = () => {
     }
   };
 
+ // Handle username submission
+ const handleUsernameSubmit = (e) => {
+  e.preventDefault(); // Prevent form submission
+  if (username.trim()) {
+    setIsUsernameSubmitted(true);
+  } else {
+    toast.warn("Please enter a valid name.", { position: "top-center" });
+  }
+};
+
+
   const handleGoHome = () => {
     navigate('/');
   };
@@ -483,8 +494,8 @@ const Questions = () => {
   if (shuffledQuestions.length === 0) {
     return (
       <div className="quiz-container">
-        <h2>Time for a quiz! Are you ready?</h2>
-        <button onClick={handleGoHome} className="home-button">Let's Start</button>
+        <h2>No questions available for this category. Please try another category.</h2>
+        <button onClick={handleGoHome} className="home-button">Go to Home</button>
       </div>
     );
   }

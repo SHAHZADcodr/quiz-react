@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Question.css';
-import Home from '../Home';
+import Categories from './Categories';
 
 const questionsData = {
   general: [
@@ -394,7 +394,7 @@ const questionsData = {
     { question: "Which U.S. state was the last to ratify the Constitution?", options: ["Virginia", "North Carolina", "Rhode Island", "Delaware"], answer: "Rhode Island" },
     { question: "What does the 42nd Amendment to the Indian Constitution deal with?", options: ["Fundamental Rights", "Emergency Powers", "Preamble changes", "Fundamental Duties"], answer: "Fundamental Duties" },
     { question: "The concept of judicial review in the U.S. was established by which case?", options: ["Brown v. Board of Education", "Marbury v. Madison", "Roe v. Wade", "Plessy v. Ferguson"], answer: "Marbury v. Madison" }
-  ],
+  ]
 };
 
 const Questions = () => {
@@ -405,28 +405,25 @@ const Questions = () => {
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
-
   console.log("Category from URL:", category);
+// Memoize questions based on category
+const questions = useMemo(() => {
+  const availableQuestions = questionsData[category] || [];
+  console.log("Retrieved questions for category:", availableQuestions);
+  return availableQuestions;
+}, [category]);
 
-  // Memoize questions based on category
-  const questions = useMemo(() => {
-    const availableQuestions = questionsData[category] || [];
-    console.log("Retrieved questions for category:", availableQuestions);
-    return availableQuestions;
-  }, [category]);
+console.log("Questions length:", questions.length); // Log questions length
+useEffect(() => {
+  if (questions.length > 0) {
+    const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, 10);
+    setShuffledQuestions(shuffled);
+    console.log("Shuffled questions length:", shuffled.length); // Check shuffled length
+  } else {
+    console.warn("No questions available for this category.");
+  }
+}, [questions]);
 
-  console.log("Questions length:", questions.length); // Log questions length
-
-  useEffect(() => {
-    if (questions.length > 0) {
-      const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, 10);
-      setShuffledQuestions(shuffled);
-      console.log("Shuffled questions length:", shuffled.length); // Check shuffled length
-    } else {
-      console.warn("No questions available for this category.");
-      // Optionally, you can display a message here instead of redirecting
-    }
-  }, [questions]);
 
   const handleOptionClick = (option) => {
     const currentQuestion = shuffledQuestions[currentIndex];
@@ -434,17 +431,19 @@ const Questions = () => {
 
     if (option === currentQuestion.answer) {
       setScore(score + 1);
-      toast.success("Correct answer!", {
-        position: "top-center",
-        onClose: handleNextQuestion,
-        autoClose: 800,
-      });
+      toast.success("Correct answer!", 
+        { position: "top-center", 
+            onClose: handleNextQuestion ,
+            autoClose:800
+
+        });
     } else {
       toast.error("Incorrect answer!", {
-        position: "top-center",
-        onClose: handleNextQuestion,
-        autoClose: 800,
-      });
+         position: "top-center", 
+         onClose: handleNextQuestion,
+         autoClose:800
+
+        });
     }
   };
 
@@ -454,9 +453,8 @@ const Questions = () => {
       setIsAnswered(false);
     } else {
       setIsQuizFinished(true);
-      toast.info(`Quiz finished! Your score is: ${score} / ${shuffledQuestions.length}`, {
-        position: "top-center",
-        autoClose: 2000,
+      toast.info(`Quiz finished! Your score is: ${score} / ${shuffledQuestions.length}`, { position: "top-center" ,
+        autoClose:2000
       });
     }
   };
@@ -465,26 +463,19 @@ const Questions = () => {
     navigate('/');
   };
 
-  // If quiz is finished, show the results
+  if (shuffledQuestions.length === 0&&cate) {
+    return <p>Questions not available</p>
+  }
+
   if (isQuizFinished) {
     return (
       <div className="quiz-container result-container">
         <div className='resultDiv'>
-          <h2 id='qhead'>Quiz Finished!</h2>
-          <p>Your final score is: {score} / {shuffledQuestions.length}</p>
-          <button onClick={handleGoHome} className="home-button">Go to Home</button>
-          <ToastContainer />
+        <h2 id='qhead'>Quiz Finished!</h2>
+        <p>Your final score is: {score} / {shuffledQuestions.length}</p>
+        <button onClick={handleGoHome} className="home-button">Go to Home</button>
+        <ToastContainer />
         </div>
-      </div>
-    );
-  }
-
-  // If there are no shuffled questions, you can show a message instead of redirecting
-  if (shuffledQuestions.length === 0) {
-    return (
-      <div className="quiz-container">
-        <h2>Time for a quiz! Are you ready?</h2>
-        <button onClick={handleGoHome} className="home-button">Let's Start</button>
       </div>
     );
   }
@@ -493,6 +484,7 @@ const Questions = () => {
 
   return (
     <div className="quiz-container">
+      {/* <h1>{category}</h1> */}
       <p id='question'>Question {currentIndex + 1} of {shuffledQuestions.length}</p>
       <h2>{currentQuestion.question}</h2>
       <div className="options-list">

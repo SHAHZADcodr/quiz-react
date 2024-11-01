@@ -5,16 +5,16 @@ import { Routes, Route } from "react-router-dom";
 import MyNavbar from "./components/Nav";
 import Categories from "./components/Categories";
 import Questions from "./components/Question";
-import Home from "./Home";
+import 
 
 function App() {
   return (
     <>
       <MyNavbar />
       <Routes>
-        <Route path="/" element={<Home/>} />{" "}
+        <Route path="/" element={<Categories />} />{" "}
         {/* Render Categories on Home */}
-        <Route path="*" element={<Home/>} />
+        <Route path="*" element={<Categories />} />
         {/* Dynamic category route */}
         <Route path="/:category" element={<Questions />} />
       </Routes>

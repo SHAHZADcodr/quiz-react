@@ -405,6 +405,8 @@ const Questions = () => {
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [username, setUsername] = useState(''); // State for username
+  const [isUsernameSubmitted, setIsUsernameSubmitted] = useState(false); // Track if the username has been submitted
 
   console.log("Category from URL:", category);
 
@@ -461,6 +463,17 @@ const Questions = () => {
     }
   };
 
+ // Handle username submission
+ const handleUsernameSubmit = (e) => {
+  e.preventDefault(); // Prevent form submission
+  if (username.trim()) {
+    setIsUsernameSubmitted(true);
+  } else {
+    toast.warn("Please enter a valid name.", { position: "top-center" });
+  }
+};
+
+
   const handleGoHome = () => {
     navigate('/');
   };
@@ -480,11 +493,11 @@ const Questions = () => {
   }
 
   // If there are no shuffled questions, you can show a message instead of redirecting
-  if (shuffledQuestions.length === 0) {
+  if (shuffledQuestions.length === 0 && !isUsernameSubmitted) {
     return (
       <div className="quiz-container">
-        <h2>Time for a quiz! Are you ready?</h2>
-        <button onClick={handleGoHome} className="home-button">Let's Start</button>
+        
+        <button onClick={handleGoHome} className="home-button">Go to Home</button>
       </div>
     );
   }
